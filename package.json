@@ -1,0 +1,22 @@
+{
+  "name": "servereventapp",
+  "version": "1.0.0",
+  "description": "It is Event App Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrdabari/ServerEventApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrdabari/ServerEventApp/issues"
+  },
+  "homepage": "https://github.com/nrdabari/ServerEventApp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
