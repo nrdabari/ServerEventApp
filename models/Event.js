@@ -7,6 +7,7 @@ const eventSchema = new Schema({
   eventDescription: String,
   eventDate: Date,
   eventCategory: String,
+  createdBy: String,
   // createdBy: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'User', // Assuming you have a User model for authentication
