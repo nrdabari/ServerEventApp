@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000; // Define the port you want to run the server on
 const cors = require('cors'); // Import the 'cors' library
-require('dotenv').config();
+require('dotenv').config();  // reqired for .env
 const mongoose = require('mongoose');
 const Event = require('./models/Event');
 // Connect to MongoDB
@@ -47,6 +47,37 @@ event.save()
   });
 });
 
+// API endpoint to get upcoming events
+app.get('/events/upcoming', async(req, res) => {
+  console.log("upcomingEvents");
+  // Query the database to find events with dates greater than currentDate
+  // Return the upcoming events
+  const currentDate = new Date(req.query.date);
+
+  try {
+    const upcomingEvents = await Event.find({ eventDate: { $gt: currentDate } });
+    console.log(upcomingEvents);
+    res.json(upcomingEvents);
+
+  } catch (error) {
+    console.error('Error fetching upcoming events:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// API endpoint to get past events
+app.get('/events/past', async(req, res) => {
+  const currentDate = new Date(req.query.date);
+  // Query the database to find events with dates less than currentDate
+  // Return the past events
+  try {
+    const pastEvents = await Event.find({ eventDate: { $lt: currentDate } });
+    res.json(pastEvents);
+  } catch (error) {
+    console.error('Error fetching past events:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
